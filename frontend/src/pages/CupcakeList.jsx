@@ -54,7 +54,13 @@ export default function CupcakeList() {
    * console.warn(cupcakes);
    */
 
-  console.warn(accessories);
+  /**
+   * J'affiche mes accessoires,
+   *
+   * Output :
+   * un tableau de 5 éléments
+   * console.warn(accessories);
+   */
 
   // Step 3: get all accessories
 
@@ -67,6 +73,11 @@ export default function CupcakeList() {
           <select id="cupcake-select">
             <option value="">---</option>
             {/* Step 4: add an option for each accessory */}
+            {accessories.map((accessorie) => (
+              <option value={accessorie.id} key={accessorie.id}>
+                {accessorie.name}
+              </option>
+            ))}
           </select>
         </label>
       </form>
