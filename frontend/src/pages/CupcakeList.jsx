@@ -14,6 +14,11 @@ export default function CupcakeList() {
    */
   const [accessories, setAccessories] = useState([]);
   /**
+   * Je vais récuperer la valeur qui a été séléctionné par mon utilisateur
+   */
+  const [choice, setChoice] = useState("");
+
+  /**
    * Je définie mon ENDPOINT pour mes cupcakes
    * @type {string}
    */
@@ -25,6 +30,8 @@ export default function CupcakeList() {
   const getCupcakes = () => {
     axios.get(CUPCAKES_ENDPOINT).then((response) => setCupcakes(response.data));
   };
+
+  // Step 3: get all accessories
 
   /**
    * Même logique que pour les cupcakes.
@@ -62,7 +69,19 @@ export default function CupcakeList() {
    * console.warn(accessories);
    */
 
-  // Step 3: get all accessories
+  /**
+   * J'affiche ce que vaut choice, ici il vaudra une valeur entre rien -> 5
+   * console.warn(choice);
+   */
+
+  /**
+   * Ma fonction handleChange sera éxécuté à chaque fois que mon select change,
+   * je récupère sa valeur qui vaut un ID pour ensuite le comparer avec celui des accessoires.
+   * @param e
+   */
+  const handleChange = (e) => {
+    setChoice(e.target.value);
+  };
 
   return (
     <>
@@ -70,7 +89,7 @@ export default function CupcakeList() {
       <form className="center">
         <label htmlFor="cupcake-select">
           Filter by{" "}
-          <select id="cupcake-select">
+          <select id="cupcake-select" onChange={handleChange}>
             <option value="">---</option>
             {/* Step 4: add an option for each accessory */}
             {/*
@@ -89,14 +108,19 @@ export default function CupcakeList() {
         {/*
           Ici, je fais un `.map()` pour afficher chacun de mes éléménts.
           la `key`ici, doit être sur le container parent, dans mon cas c'est ma balise `li`
+
+          Grâce à la méthode filter, je vais pouvoir créer un nouveau tableau
+          qu'avec les éléments qui correspondent à mon filtre, celui ci sera envoyé directement à mon `.map()`
          */}
-        {cupcakes.map((cupcake) => {
-          return (
-            <li className="cupcake-item" key={cupcake.id}>
-              <Cupcake cupcake={cupcake} />
-            </li>
-          );
-        })}
+        {cupcakes
+          .filter((cupcake) => cupcake.accessory_id === choice || choice === "")
+          .map((cupcake) => {
+            return (
+              <li className="cupcake-item" key={cupcake.id}>
+                <Cupcake cupcake={cupcake} />
+              </li>
+            );
+          })}
         {/* end of block */}
       </ul>
     </>
