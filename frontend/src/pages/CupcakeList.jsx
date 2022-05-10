@@ -1,8 +1,44 @@
 import Cupcake from "@components/Cupcake";
+import axios from "axios";
+import { useEffect, useState } from "react";
 
 export default function CupcakeList() {
   // Step 1: get all cupcakes
+  /**
+   * Je vais stocker mes cupcakes dans mon state `cupcakes`.
+   * Pour mettre à jour mes cupcakes, je vais utiliser `setCupcakes`
+   */
+  const [cupcakes, setCupcakes] = useState([]);
+  /**
+   * Je définie mon ENDPOINT pour mes cupcakes
+   * @type {string}
+   */
+  const CUPCAKES_ENDPOINT = "http://localhost:4000/cupcakes";
 
+  /**
+   * Je défini une fonction `getCupcakes` qui se chargera d'aller chercher via axios mes cupcakes
+   */
+  const getCupcakes = () => {
+    axios.get(CUPCAKES_ENDPOINT).then((response) => setCupcakes(response.data));
+  };
+
+  /**
+   * J'utilise le hook `useEffect` qui va me permettre de lancer la fonction quand mon composant sera créer
+   * (au montage de celui-ci)
+   * C'est d'ailleur pour ça que mon tableau de dépendance est vide, car c'est juste à la création
+   */
+  useEffect(() => {
+    getCupcakes();
+  }, []);
+
+  /**
+   * J'affiche mes cupcakes
+   *
+   * output :
+   * un tableau de 27 éléments
+   */
+
+  console.warn(cupcakes);
   // Step 3: get all accessories
 
   return (
