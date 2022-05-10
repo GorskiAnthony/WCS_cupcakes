@@ -36,9 +36,9 @@ export default function CupcakeList() {
    *
    * output :
    * un tableau de 27 éléments
+   * console.warn(cupcakes);
    */
 
-  console.warn(cupcakes);
   // Step 3: get all accessories
 
   return (
@@ -55,9 +55,17 @@ export default function CupcakeList() {
       </form>
       <ul className="cupcake-list" id="cupcake-list">
         {/* Step 2: repeat this block for each cupcake */}
-        <li className="cupcake-item">
-          <Cupcake />
-        </li>
+        {/*
+          Ici, je fais un `.map()` pour afficher chacun de mes éléménts.
+          la `key`ici, doit être sur le container parent, dans mon cas c'est ma balise `li`
+         */}
+        {cupcakes.map((cupcake) => {
+          return (
+            <li className="cupcake-item" key={cupcake.id}>
+              <Cupcake cupcake={cupcake} />
+            </li>
+          );
+        })}
         {/* end of block */}
       </ul>
     </>
