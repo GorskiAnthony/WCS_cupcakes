@@ -10,6 +10,10 @@ export default function CupcakeList() {
    */
   const [cupcakes, setCupcakes] = useState([]);
   /**
+   * La même chose qu'au dessus, je stock mes infos dans la variable `accessories`
+   */
+  const [accessories, setAccessories] = useState([]);
+  /**
    * Je définie mon ENDPOINT pour mes cupcakes
    * @type {string}
    */
@@ -23,12 +27,23 @@ export default function CupcakeList() {
   };
 
   /**
+   * Même logique que pour les cupcakes.
+   * @type {string}
+   */
+  const ACCESSORIES_ENDPOINT = "http://localhost:4000/accessories";
+  const getAccessories = () => {
+    axios
+      .get(ACCESSORIES_ENDPOINT)
+      .then((response) => setAccessories(response.data));
+  };
+  /**
    * J'utilise le hook `useEffect` qui va me permettre de lancer la fonction quand mon composant sera créer
    * (au montage de celui-ci)
    * C'est d'ailleur pour ça que mon tableau de dépendance est vide, car c'est juste à la création
    */
   useEffect(() => {
     getCupcakes();
+    getAccessories();
   }, []);
 
   /**
@@ -38,6 +53,8 @@ export default function CupcakeList() {
    * un tableau de 27 éléments
    * console.warn(cupcakes);
    */
+
+  console.warn(accessories);
 
   // Step 3: get all accessories
 
