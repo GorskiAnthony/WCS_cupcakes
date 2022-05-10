@@ -73,6 +73,9 @@ export default function CupcakeList() {
           <select id="cupcake-select">
             <option value="">---</option>
             {/* Step 4: add an option for each accessory */}
+            {/*
+               Ici, je boucle sur mon tableau d'accessoires qui se trouve dans mon state `accessoiries`
+             */}
             {accessories.map((accessorie) => (
               <option value={accessorie.id} key={accessorie.id}>
                 {accessorie.name}
