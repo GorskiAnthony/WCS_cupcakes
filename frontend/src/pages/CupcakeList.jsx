@@ -1,5 +1,6 @@
 import Cupcake from "@components/Cupcake";
 import axios from "axios";
+import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 export default function CupcakeList() {
@@ -117,7 +118,9 @@ export default function CupcakeList() {
           .map((cupcake) => {
             return (
               <li className="cupcake-item" key={cupcake.id}>
-                <Cupcake cupcake={cupcake} />
+                <Link to={`/cupcakes/${cupcake.id}`}>
+                  <Cupcake cupcake={cupcake} />
+                </Link>
               </li>
             );
           })}
