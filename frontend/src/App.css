@@ -1,0 +1,152 @@
+@import "./cupcake.css";
+
+:root {
+  --default-cream-color: #ffe868;
+  --background-color: #fac564;
+  --main-color: #de467c;
+  --secondary-color: #9d9cdf;
+  --light: #fffef7;
+  --dark: #2a2929;
+  --shadow: #8d8b86;
+  --light-shadow: rgba(255, 255, 255, 0.3);
+  --cupcake-basis-color: #ffd180;
+
+  --text-font: "Cantarell", sans-serif;
+  --title-font: "Amatic SC", sans-serif;
+
+  --container-width: 800px;
+  --spacing: 8px;
+  --spacing-lg: calc(var(--spacing) * 2);
+  --spacing-xl: calc(var(--spacing) * 4);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--background-color);
+  font-family: var(--text-font);
+  font-size: 14pt;
+}
+
+#root {
+  display: flex;
+  justify-content: center;
+}
+
+h1 {
+  color: var(--secondary-color);
+  font-family: var(--title-font);
+  text-align: center;
+}
+
+.main-container {
+  width: var(--container-width);
+  background-color: var(--light);
+  padding: calc(var(--spacing-lg) * 2);
+  margin-top: var(--spacing-lg);
+  border-radius: 4px;
+  box-shadow: 4px 4px 4px var(--shadow);
+  min-height: 40vh;
+}
+
+.home {
+  display: flex;
+}
+
+.home-cupcake {
+  display: flex;
+  position: relative;
+}
+
+.home-cupcake::before {
+  position: absolute;
+  content: "";
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  animation: rotating 14s infinite linear;
+  background-image: url("./assets/starburst.png");
+}
+
+@-webkit-keyframes rotating {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.btn {
+  display: block;
+  text-align: center;
+  color: var(--light);
+  padding: var(--spacing);
+  border-radius: 4px;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.btn:hover {
+  filter: brightness(0.9);
+}
+
+.primary-btn {
+  background-color: var(--main-color);
+}
+
+.secondary-btn {
+  background-color: var(--secondary-color);
+}
+
+label {
+  margin-right: 0.5rem;
+}
+
+.navbar {
+  margin-top: var(--spacing-xl);
+  margin-left: calc(var(--spacing-lg) * -1);
+}
+
+.navbar .btn {
+  margin-bottom: var(--spacing);
+}
+
+.cupcake-list {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  list-style-type: none;
+  padding: 0;
+}
+
+.cupcake-item {
+  margin-bottom: var(--spacing-xl);
+  transition: transform 0.3s ease-in-out;
+  position: relative;
+}
+
+.cupcake-item:hover::before {
+  position: absolute;
+  content: "";
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  animation: rotating 14s infinite linear;
+  background-image: url("./assets/starburst.png");
+}
+
+.instructions img {
+  margin-top: var(--spacing-lg);
+  width: calc(var(--container-width) * 2 / 3);
+}
+
+.center {
+  text-align: center;
+}
+
+a:any-link {
+  text-decoration: none;
+}
